@@ -1,0 +1,161 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>*{box-sizing:border-box}html,body{margin:0}</style></head><body><title>בינגו Fit – תסריטים לאישור</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Assistant:wght@400;600;700&display=swap">
+<style>
+/* Layout: one reading column. A sticky tally bar on top, then one sheet per script (call-sheet style rows), each closed by its own decision strip. */
+:root{
+  --bg:#f3f8f6; --surface:#ffffff; --ink:#0f2e30; --muted:#587274; --line:#d5e3df;
+  --teal:#0e5a5e; --green:#9bdcb4; --green-ink:#1d6b45; --coral:#e8604c; --coral-soft:#fde7e2;
+  --green-soft:#e3f5ea; --amber:#b7791f; --amber-soft:#fbf0d9; --chip:#e8f1ef;
+  --display:"Karantina","Assistant","Arial Hebrew",sans-serif;
+  --body:"Assistant","Heebo","Arial Hebrew",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0a2123; --surface:#102c2f; --ink:#e8f3f0; --muted:#9db7b5; --line:#24484b;
+  --teal:#7fd3c9; --green:#9bdcb4; --green-ink:#9bdcb4; --coral:#ff8a76; --coral-soft:#4a2620;
+  --green-soft:#17402f; --amber:#f0c36a; --amber-soft:#3f3316; --chip:#18393c; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0a2123; --surface:#102c2f; --ink:#e8f3f0; --muted:#9db7b5; --line:#24484b;
+  --teal:#7fd3c9; --green:#9bdcb4; --green-ink:#9bdcb4; --coral:#ff8a76; --coral-soft:#4a2620;
+  --green-soft:#17402f; --amber:#f0c36a; --amber-soft:#3f3316; --chip:#18393c; color-scheme:dark }
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:860px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:22px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(40px,8vw,64px);line-height:.95;margin:0;color:var(--teal);text-wrap:balance}
+.sub{color:var(--muted);margin:6px 0 0}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-bottom:1px solid var(--line)}
+.tally{display:flex;gap:6px;flex-wrap:wrap;flex:1;min-width:0}
+.fbtn{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer}
+.fbtn[aria-pressed="true"]{background:var(--teal);color:var(--bg);border-color:var(--teal)}
+.fbtn b{font-variant-numeric:tabular-nums}
+.sync{font-size:13px;color:var(--muted)}
+.sync.bad{color:var(--coral);font-weight:600}
+h2.sec{font-family:var(--display);font-weight:400;font-size:34px;line-height:1;margin:14px 0 0;color:var(--ink)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.head{display:flex;gap:14px;align-items:flex-start;padding:16px 18px 12px;cursor:pointer;background:none;border:0;width:100%;text-align:start;font:inherit;color:inherit}
+.num{font-family:var(--display);font-size:46px;line-height:.8;color:var(--green-ink);min-width:1.1em;font-variant-numeric:tabular-nums}
+.ht{flex:1;min-width:0}
+.kind{font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--muted)}
+.title{font-family:var(--display);font-size:34px;line-height:1;margin:2px 0 0}
+.pill{font-size:13px;font-weight:700;border-radius:999px;padding:4px 11px;white-space:nowrap;align-self:center}
+.pill.pending{background:var(--chip);color:var(--muted)}
+.pill.approved{background:var(--green-soft);color:var(--green-ink)}
+.pill.fix{background:var(--amber-soft);color:var(--amber)}
+.pill.rejected{background:var(--coral-soft);color:var(--coral)}
+.body{padding:0 18px 16px;display:flex;flex-direction:column;gap:14px}
+.card.closed .body{display:none}
+.meta{display:flex;flex-wrap:wrap;gap:6px}
+.meta span{background:var(--chip);border-radius:4px;padding:3px 9px;font-size:14px}
+.meta b{color:var(--muted);font-weight:600}
+.p{margin:0;max-width:65ch}
+.lbl{font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.02em;margin:0 0 4px}
+.beats{border-top:1px solid var(--line)}
+.beat{display:grid;grid-template-columns:70px minmax(0,1fr);gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.time{font-family:var(--display);font-size:24px;line-height:1.1;color:var(--teal);font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+.bd{display:flex;flex-direction:column;gap:5px;min-width:0}
+.see{margin:0}
+.say{margin:0;font-weight:700;border-inline-start:3px solid var(--green);padding-inline-start:10px}
+.scr{margin:0;font-size:14px;color:var(--muted)}
+ul{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:4px}
+.verify{background:var(--amber-soft);border-radius:4px;padding:10px 14px}
+.verify .lbl{color:var(--amber)}
+.changed{background:var(--green-soft);border-radius:4px;padding:10px 14px}
+.changed .lbl{color:var(--green-ink)}
+.rows li{list-style:none}.rows{padding:0}
+.rows li{padding:6px 0;border-bottom:1px solid var(--line)}
+.decide{border-top:1px solid var(--line);background:var(--bg);padding:14px 18px;display:flex;flex-direction:column;gap:10px}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.dbtn{font:inherit;font-weight:700;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px;padding:9px 16px;cursor:pointer;min-height:44px}
+.dbtn:focus-visible,.fbtn:focus-visible,.head:focus-visible,textarea:focus-visible,.copy:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.dbtn.approved[aria-pressed="true"]{background:var(--green-soft);border-color:var(--green-ink);color:var(--green-ink)}
+.dbtn.fix[aria-pressed="true"]{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}
+.dbtn.rejected[aria-pressed="true"]{background:var(--coral-soft);border-color:var(--coral);color:var(--coral)}
+textarea{font:inherit;width:100%;box-sizing:border-box;min-height:74px;border:1.5px solid var(--line);border-radius:6px;padding:10px 12px;background:var(--surface);color:var(--ink);resize:vertical}
+.saved{font-size:13px;color:var(--muted);min-height:1.3em}
+.summary{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.summary pre{margin:0;white-space:pre-wrap;font-family:var(--body);font-size:15px;background:var(--bg);border-radius:4px;padding:12px;max-height:320px;overflow:auto}
+.copy{align-self:flex-start;font:inherit;font-weight:700;background:var(--teal);color:var(--bg);border:0;border-radius:6px;padding:10px 18px;cursor:pointer;min-height:44px}
+@media (max-width:520px){.beat{grid-template-columns:54px minmax(0,1fr);gap:8px}.title{font-size:28px}.num{font-size:38px}.head{gap:10px;flex-wrap:wrap}}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .2s}}
+</style>
+
+<div class="wrap" dir="rtl" lang="he">
+  <header>
+    <h1>בינגו Fit · התסריטים לחודש הבא</h1>
+    <p class="sub">חיים, אלה תשעת התסריטים. בכל אחד סמן: מאשר, צריך תיקון או לא מאשר, ואפשר לכתוב הערה. בסוף הדף יש כפתור ששולח לי את הכול בוואטסאפ. יצחק</p>
+  </header>
+  <div class="bar"><span class="sync" id="prog"></span></div>
+  <div id="videos" style="display:flex;flex-direction:column;gap:14px"></div>
+  <section class="summary">
+    <p class="lbl">סיכום לשליחה</p>
+    <p class="p">הסימונים נשמרים במכשיר הזה, כך שאפשר לצאת ולחזור. כשסיימת, שלח לי את הסיכום.</p>
+    <pre id="sumtxt"></pre>
+    <div class="btns">
+      <a class="copy" id="wa" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center">שלח ליצחק בוואטסאפ</a>
+      <button class="dbtn" id="copy" type="button">העתק סיכום</button>
+    </div>
+    <p class="scr" style="margin:0">אם הכפתור של וואטסאפ לא נפתח, לחץ על "העתק סיכום" והדבק לי בהודעה.</p>
+  </section>
+</div>
+<script>
+const DATA = {"videos": [{"id": "v2", "num": 1, "kind_label": "פרסומת", "goal": "הצטרפות לתהליך", "title": "מחשב מסלול מחדש", "len": "35–40 שניות", "cast": "חיים לבד", "loc": "רכב חונה", "idea": "ניווט אף פעם לא אומר \"פספסת, אין טעם להמשיך\". דיאטות הן מפה מודפסת, והליווי של בינגו Fit הוא ניווט שמחשב מסלול מחדש.", "beats": [{"t": "0–4", "v": "חיים ברכב, מסך ניווט. חיים מחייך ולא פונה.", "say": "", "scr": "קול ניווט: \"בעוד 200 מטר, פנו ימינה.\" ואז: \"מחשב מסלול מחדש.\""}, {"t": "4–9", "v": "חיים למצלמה.", "say": "שמתם לב שהניווט אף פעם לא אומר לכם: \"זהו, פספסת. אין טעם להמשיך\"?", "scr": ""}, {"t": "9–19", "v": "מוציא מפה מודפסת מקופלת.", "say": "רוב הדיאטות עובדות כמו מפה מודפסת. כל עוד הכול הולך לפי התוכנית, מעולה. אבל ברגע שיש חתונה, שבוע לחוץ, ילד חולה, אתם כבר מחוץ למפה.", "scr": "מחסומים קטנים צצים על המפה: אייקון אירוע, שעון, מדחום."}, {"t": "19–30", "v": "זורק את המפה למושב האחורי.", "say": "בבינגו Fit הליווי עובד כמו ניווט. אנחנו בונים את המסלול לפי החיים שלכם, וכשמשהו משתנה, אנחנו מחשבים איתכם מסלול מחדש. והמטרה: שבסוף תדעו לנווט לבד.", "scr": "קו מסלול בירוק המותג מתעקל סביב המחסומים וממשיך."}, {"t": "30–38", "v": "מבט ישר למצלמה.", "say": "לחצו על הקישור, נתאם שיחת אבחון והתאמה, ונבנה לכם את המסלול.", "scr": "כפתור \"לתיאום שיחה\". קול ניווט: \"הגעתם ליעד\". לוגו + מוטו."}], "verify": []}, {"id": "v3", "num": 2, "kind_label": "פרסומת", "goal": "הצטרפות לתהליך", "title": "קודם מודדים", "len": "כ־40 שניות", "cast": "חיים לבד (הצופה הוא הלקוח)", "loc": "חייט אמיתי, או פינת חייט שנבנה", "idea": "חיים הוא חייט שמודד את הצופה. רוב הדיאטות נקנות מהמדף במידה אחת לכולם, ובבינגו Fit קודם מודדים ורק אז תופרים.", "beats": [{"t": "0–1.5", "v": "סרט מדידה נמתח בחדות לרוחב כל הפריים, קרוב מאוד לעדשה. חיים מאחוריו.", "say": "אל תזוזו שנייה.", "scr": "צליל מתיחה חד של הסרט."}, {"t": "1.5–5", "v": "חיים מסתכל על המספר בסרט, מרים עיניים אל הצופה ומהנהן.", "say": "עכשיו אני מבין למה הדיאטה האחרונה שלכם לא החזיקה. היא פשוט לא במידה שלכם.", "scr": "המילים \"לא במידה שלכם\" בקורל."}, {"t": "5–10", "v": "מסתובב למתלה בגדים. על כל קולב תווית.", "say": "וזה לא אשמתכם. את רוב הדיאטות קונים ככה, מהמדף. ואז מתפלאים שזה לוחץ.", "scr": "תוויות: \"דיאטת 1,200 קלוריות\", \"דיאטת מיצים\", \"בלי פחמימות\". על כולן: \"מידה אחת לכולם\"."}, {"t": "10–25", "v": "מודד את המצלמה, כתפיים ואורך יד, ורושם בפנקס.", "say": "בבינגו Fit מתחילים במדידה. מה אתם אוהבים, איך נראה היום שלכם, ואיפה נפלתם עד היום. ורק אז תופרים.", "scr": "בכתב יד, במקום מספרים: \"אוהב חמין בשבת\" / \"עובד עד 19:00\" / \"נשבר בחתונות\" / \"סלט? רק אם אין ברירה\"."}, {"t": "25–33", "v": "מסמן קו בגיר, מתקן סיכה.", "say": "וכמו כל חייט טוב, אנחנו לא נעלמים אחרי שקיבלתם את התפריט. משהו השתנה? מתאימים שוב.", "scr": ""}, {"t": "33–40", "v": "סרט המדידה על הצוואר, מבט ישר למצלמה.", "say": "אז בואו נתחיל במדידה. לחצו על הקישור, נתאם שיחת אבחון והתאמה, ונתפור לכם תהליך במידה שלכם.", "scr": "כפתור \"לתיאום שיחה\". לוגו + מוטו."}], "verify": []}, {"id": "v4", "num": 3, "kind_label": "פרסומת", "goal": "צפייה בהדרכה החינמית", "title": "4 שנים, 4 דקות", "len": "כ־29 שניות", "cast": "חיים לבד", "loc": "שולחן נקי במשרד", "idea": "חיים שופך על שולחן ערימה אמיתית של שאריות מדיאטות. ארבע שנים של ניסיונות מול ארבע דקות שמסבירות למה אף אחד מהם לא החזיק.", "beats": [{"t": "0–3", "v": "שולחן ריק ונקי. חיים הופך מעליו קרטון, וערימה נשפכת: תפריטים מודפסים, צנצנת אבקת שייק, ספר דיאטה, קופסאות.", "say": "ככה נראות ארבע שנים של דיאטות.", "scr": "רעש אמיתי של הנפילה. הכותרת \"4 שנים\" גדולה, בקורל."}, {"t": "3–9", "v": "מרים פריט אחרי פריט ומשליך הצידה. קאט על כל פריט.", "say": "התפריט מהדיאטנית. השייקים. האפליקציה שסופרת כל פירור. הדף מהמקרר שאף אחד לא הסתכל עליו.", "scr": ""}, {"t": "9–15", "v": "נשען עם שתי ידיים על השולחן, מעל הערימה.", "say": "כל אחת מהן התחילה מצוין. שבוע, חודש, אפילו חודשיים. ואז הגיעה חתונה, או שבוע לחוץ, והכול קרס. כל פעם מחדש.", "scr": "המילים \"כל פעם מחדש\" מודגשות."}, {"t": "15–22", "v": "מטאטא את כל הערימה מהשולחן בתנועת זרוע אחת. שקט. מניח על השולחן הריק טלפון אחד, ועליו טיימר: 4:00.", "say": "הבעיה אף פעם לא הייתה אתם. תנו לי ארבע דקות, ואני אראה לכם למה כל הדיאטות נגמרות אותו דבר.", "scr": "דרופ במוזיקה ברגע הטאטוא. כשהטלפון נוחת, הכותרת מתחלפת מ\"4 שנים\" ל\"4 דקות\" בירוק."}, {"t": "22–29", "v": "חיים עומד, מבט ישר למצלמה, ומצביע למעלה מעל הכתף.", "say": "ארבע דקות שמשנות את התפיסה. זאת ההדרכה החינמית שלי. לחצו על הקישור, ותשנו גישה.", "scr": "המשפט \"4 דקות שמשנות את התפיסה\" גדול על המסך. חלון ההדרכה נפתח מאחורי חיים, מעל הכתף, עם טיימר 4:00. כפתור \"לצפייה בהדרכה\". לוגו + מוטו."}], "verify": ["מה אתה אומר בהדרכה? ההבטחה \"תשנו את התפיסה\" צריכה להתאים לתוכן שלה.", "קטע וידאו או צילום מסך מההדרכה, בשביל החלון שנפתח מאחוריך.", "הקישור להדרכה."]}, {"id": "v5", "num": 4, "kind_label": "תוכן קליל", "goal": "חיבור ושיתופים", "title": "כולם תזונאים", "len": "כ־28 שניות", "cast": "חיים משחק את כל הדמויות", "loc": "חדר מדרגות, בית כנסת או משרד", "idea": "ברגע שאומרים \"אני בתהליך\", כל מי שבסביבה הופך למומחה לתזונה. חיים משחק את כולם, עם אביזר אחד שמתחלף.", "beats": [{"t": "0–3", "v": "חיים, כאחד האנשים, מסרב בנימוס לעוגה שמוגשת לו מחוץ לפריים.", "say": "לא תודה, אני בתהליך.", "scr": "הפריים קופא. כתובית: \"הרגע שבו אמרתם: אני בתהליך\"."}, {"t": "3–8", "v": "דמות 1, השכן (שקית קניות ביד), נכנס קרוב מדי לעדשה.", "say": "תהליך? תקשיב. גיס שלי ירד עשרים קילו. רק חמוצים. חודש שלם.", "scr": "תווית קטנה: \"השכן. מומחה מאז יום שלישי\"."}, {"t": "8–13", "v": "דמות 2, הגבאי (צרור מפתחות), מרים אצבע.", "say": "אסור לך פירות אחרי ארבע. זה ידוע. הפרי נתקע בבטן.", "scr": "תווית: \"הגבאי. קרא על זה פעם\"."}, {"t": "13–18", "v": "דמות 3, החבר מהעבודה (כוס קפה).", "say": "אתה חייב צום. שש־עשרה שמונה. או שמונה שש־עשרה. אחד מהם.", "scr": "תווית: \"החבר מהעבודה. ראה סרטון\"."}, {"t": "18–22", "v": "חיים כעצמו, במרכז. שלוש הדמויות ממשיכות לדבר יחד מחוץ לפריים. הוא מסתכל למצלמה במבט עייף.", "say": "", "scr": "שלושת הקולות בשכבות, מתגברים, ואז נחתכים בבת אחת."}, {"t": "22–28", "v": "שקט. חיים למצלמה, בחיוך.", "say": "כולם יודעים מה אתם צריכים לאכול. אף אחד לא שאל מה אתם אוהבים.", "scr": "לוגו קצר."}], "verify": ["נוח לך לשחק כמה דמויות? אם לא, אתה מקריין והדמויות מופיעות רק בכתוביות."]}, {"id": "v6", "num": 5, "kind_label": "תוכן קליל", "goal": "חיבור ושיתופים", "title": "רק טועם", "len": "כ־25 שניות", "cast": "חיים לבד", "loc": "מטבח, יום שישי בצהריים", "idea": "יום שישי במטבח. \"רק טועם אם חסר מלח\", שוב ושוב, עד שמתברר שסעודת שבת שלמה נאכלה בעמידה, עם כפית.", "beats": [{"t": "0–2", "v": "כף נכנסת לסיר מהביל. חיים טועם.", "say": "רק טועם אם חסר מלח.", "scr": "שעון בפינה: \"יום שישי, 12:10\"."}, {"t": "2–4", "v": "קאט. מזלג בתבנית הקוגל.", "say": "רק בודק שהקוגל מוכן.", "scr": "השעון קופץ: 12:25."}, {"t": "4–6", "v": "קאט. תולש קצה של חלה.", "say": "הקצה ממילא נשרף.", "scr": "12:40."}, {"t": "6–8", "v": "קאט. שניצל ביד.", "say": "זה יצא עקום. חבל להגיש.", "scr": "13:05."}, {"t": "8–10", "v": "קאט. שוב הכף בסיר הראשון.", "say": "עכשיו חסר פלפל?", "scr": "13:30. הקאטים מתקצרים, הקצב מאיץ."}, {"t": "10–14", "v": "קאט רחב. המוזיקה נעצרת. חיים עומד מול הסירים, יד על הבטן.", "say": "אני מפוצץ. …ועוד לא אכלתי כלום היום.", "scr": "14:00."}, {"t": "14–19", "v": "מבט ישר למצלמה, רציני לגמרי, הכף עדיין ביד.", "say": "סעודת שבת שלמה. בעמידה. עם כפית אחת.", "scr": ""}, {"t": "19–23", "v": "מניח את הכף בכיור והולך לצאת מהמטבח. נעצר בפתח. חוזר, לוקח כף נקייה ופותח את הסיר.", "say": "רק לוודא שהמלח בסדר.", "scr": "קאט לשחור בדיוק כשהכף נכנסת לסיר."}, {"t": "23–25", "v": "", "say": "", "scr": "כתובית: \"מוכר? שלחו למי שטועם אצלכם.\" לוגו קצר."}], "verify": []}, {"id": "v7", "num": 6, "kind_label": "תוכן קליל", "goal": "חיבור ושיתופים", "title": "המשא ומתן", "len": "כ־28 שניות", "cast": "חיים מול חיים", "loc": "שולחן ישיבות במשרד", "idea": "מגש רוגלעך בפינת הקפה. חיים מנהל משא ומתן עסקי רציני מול עצמו, משני צידי השולחן, על כמה מותר לו לאכול.", "beats": [{"t": "0–3", "v": "מגש רוגלעך במרכז שולחן ישיבות. חיים א׳ מתיישב ומניח תיקייה.", "say": "בוא נסגור את זה מהר.", "scr": "כתובית: \"16:00. אני מול אני.\""}, {"t": "3–7", "v": "קאט לצד השני: חיים ב׳, נשען לאחור.", "say": "ב׳: אחד שלם. / א׳: חצי.", "scr": ""}, {"t": "7–11", "v": "קאטים מהירים בין השניים.", "say": "ב׳: חצי, ועוד הפירורים. / א׳: רבע. והפירורים לא נחשבים.", "scr": ""}, {"t": "11–15", "v": "חיים ב׳ נשען קדימה, בשקט. חיים א׳ נשבר.", "say": "ב׳: היה לי יום קשה. / א׳: …טוב. אחד. אבל זה האחרון.", "scr": "המוזיקה נעצרת על \"היה לי יום קשה\"."}, {"t": "15–19", "v": "צילום קרוב: לחיצת יד מעל המגש.", "say": "שניהם: סגרנו.", "scr": ""}, {"t": "19–24", "v": "קאט רחב: חיים לבד ליד השולחן. המגש ריק לגמרי. הוא מסתכל על המגש, ואז למצלמה.", "say": "מי אישר את זה?", "scr": ""}, {"t": "24–28", "v": "", "say": "", "scr": "כתובית: \"המשא ומתן הכי קשה ביום הוא מול עצמך.\" לוגו קצר."}], "verify": []}, {"id": "v8", "num": 7, "kind_label": "קונפליקט", "goal": "הזדהות", "title": "חבל לזרוק", "len": "כ־30 שניות", "cast": "חיים לבד, קול פנימי בקריינות", "loc": "מטבח, אחרי ארוחת הערב של הילדים", "idea": "אחרי ארוחת הערב נשארות צלחות עם חצי שניצל ושתי כפות אורז. הקול בראש אומר \"חבל לזרוק\". בסוף הוא מבין שמה שלא נכנס לפח נכנס אליו.", "beats": [{"t": "0–3", "v": "צילום קרוב מאוד: חצי שניצל על צלחת של ילד. היד של חיים מרחפת מעליו ונעצרת.", "say": "קול פנימי: חצי שניצל. מי זורק חצי שניצל?", "scr": "כתובית: \"20:15. הילדים סיימו לאכול. אתה עוד לא.\""}, {"t": "3–9", "v": "המצלמה נפתחת: חיים עם ערימת צלחות. בצלחת שנייה שתי כפות אורז. היד מתקרבת.", "say": "קול פנימי: חבל לזרוק. זה אוכל טוב. וגם פה נשאר. שתי כפות אורז, זה כלום.", "scr": ""}, {"t": "9–15", "v": "שלוש צלחות ביד. עומד ליד הפח. מבט לפח, מבט לצלחות.", "say": "קול פנימי: אני כבר אכלתי. אני בכלל לא רעב.", "scr": "המוזיקה מתמעטת."}, {"t": "15–21", "v": "עצירה. מסתכל על הפח, ואז על הבטן.", "say": "קול פנימי: רגע. אם זה לא נכנס לפח… זה נכנס אליי.", "scr": "שקט כמעט מוחלט."}, {"t": "21–27", "v": "מעביר את השאריות לקופסה, סוגר, מכניס למקרר. מסתובב למצלמה בחצי חיוך.", "say": "אני לא הפח של הבית.", "scr": ""}, {"t": "27–30", "v": "", "say": "", "scr": "לוגו קצר."}], "verify": []}, {"id": "v9", "num": 8, "kind_label": "קונפליקט", "goal": "הזדהות", "title": "המגירה", "len": "כ־29 שניות", "cast": "חיים לבד", "loc": "שולחן העבודה במשרד", "idea": "אחרי שיחת טלפון מעצבנת, היד של חיים הולכת לבד למגירת החטיפים. הוא לוחש למצלמה שהוא בכלל לא רעב, ואז מבין מה הוא כן.", "beats": [{"t": "0–4", "v": "חיים ליד שולחן העבודה, בטלפון, מתוח. מנתק ומניח את הטלפון חזק מדי.", "say": "כן. כן. אמרתי שזה יהיה מוכן עד מחר.", "scr": "כתובית: \"15:40. אחרי השיחה הזאת.\""}, {"t": "4–8", "v": "בלי להסתכל, היד נשלחת למגירה ומוציאה חטיף. הוא מתחיל לפתוח אותו.", "say": "", "scr": "צילום קרוב על היד והמגירה."}, {"t": "8–14", "v": "קופא. מסתובב אל המצלמה, מתקרב אליה ולוחש.", "say": "אכלתי צהריים לפני שעה. אני לא רעב. אז מה זה עושה לי ביד?", "scr": "המוזיקה יורדת כמעט לשקט בזמן הלחישה."}, {"t": "14–19", "v": "הטלפון מצלצל שוב. הוא מסתכל עליו, והיד שוב זזה לכיוון החטיף. הוא תופס את עצמו ולוחש שוב למצלמה.", "say": "הבנתי. אני לא רעב. אני עצבני.", "scr": ""}, {"t": "19–25", "v": "מחזיר את החטיף למגירה וסוגר אותה. קם, פותח חלון או יוצא למרפסת, ונושם נשימה אחת עמוקה.", "say": "", "scr": "המוזיקה חוזרת, רגועה."}, {"t": "25–29", "v": "מסתובב למצלמה, בקול רגיל ובחצי חיוך.", "say": "לא כל רעב מתחיל בבטן.", "scr": "לוגו קצר."}], "verify": []}, {"id": "v10", "num": 9, "kind_label": "קונפליקט", "goal": "הזדהות", "title": "לא נעים", "len": "כ־29 שניות", "cast": "חיים, ועוד יד וקול של מארח (גבר)", "loc": "שולחן ערוך לסעודה", "idea": "סעודה אצל הגיס. המארח מעמיס עוד מנה על הצלחת. לסרב לא נעים, לאכול לא רוצה. חיים מוצא משפט אחד שמשאיר את כולם מרוצים.", "beats": [{"t": "0–3", "v": "המצלמה מאחורי הכתף של חיים, ליד השולחן. יד של המארח מניחה עוד נתח על הצלחת שלו.", "say": "מארח (מחוץ לפריים): קח, קח, מה אתה מתבייש?", "scr": "כתובית: \"סעודה אצל הגיס.\""}, {"t": "3–8", "v": "חיים מסתובב לאחור אל המצלמה ולוחש. ואז המארח שוב.", "say": "חיים (בלחש): כבר אכלתי מנה. אני שבע. / מארח: מה, לא טעים לך?", "scr": "המוזיקה יורדת בכל לחישה."}, {"t": "8–14", "v": "שוב מסתובב אל המצלמה, קרוב יותר, לוחש מהר.", "say": "אם אגיד לא, הוא ייעלב. אם אגיד שאני בתהליך, כל השולחן יתחיל לייעץ. ואם אוכל, אצטער על זה עד מחר.", "scr": ""}, {"t": "14–17", "v": "חוזר לשולחן. המזלג נעצר מעל הנתח.", "say": "", "scr": "שקט."}, {"t": "17–24", "v": "מניח את המזלג, מחייך אל המארח.", "say": "האמת? טעים מאוד. אני פשוט שבע, ואני רוצה ליהנות מזה גם מחר. תשמור לי חתיכה? / מארח: בשמחה!", "scr": ""}, {"t": "24–29", "v": "מסתובב אל המצלמה פעם אחרונה. לחישה וחיוך.", "say": "אפשר להגיד לא. ולהישאר מוזמנים גם לפעם הבאה.", "scr": "לוגו קצר."}], "verify": ["המשפט \"תשמור לי חתיכה?\" מתאים לך ולקהל שלך?"]}], "needs": ["הקישור להדרכה החינמית, ותיאור קצר של מה שאתה אומר בה", "קטע וידאו או צילום מסך מההדרכה", "תיאום עם חייט, או אישור לבנות פינת חייט במשרד", "דירה פנויה ליום צילום אחד, עם מטבח ושולחן", "שני ימי צילום שנוחים לך"]};
+const LABEL = {pending:'עוד לא סומן', approved:'מאושר', fix:'צריך תיקון', rejected:'לא מאושר'};
+const KEY='bf-client-m2-r1';
+const items = DATA.videos.map(v=>({id:v.id, name:v.num+'. '+v.title}));
+const state = {general:''}; items.forEach(i=>state[i.id]={status:'pending', note:''});
+try{ const s=JSON.parse(localStorage.getItem(KEY)||'null'); if(s){ items.forEach(i=>{ if(s[i.id]&&LABEL[s[i.id].status]) state[i.id]={status:s[i.id].status, note:String(s[i.id].note||'')}; }); state.general=String(s.general||''); } }catch(e){}
+const el=(tag,cls,txt)=>{const e=document.createElement(tag); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e;};
+function store(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+function list(arr){ const u=el('ul'); arr.forEach(x=>u.append(el('li',null,x))); return u; }
+function block(label,node){ const d=el('div'); d.append(el('p','lbl',label), node); return d; }
+function card(v){
+  const id=v.id, c=el('article','card'); c.id='card-'+id;
+  const h=el('button','head'); h.type='button'; h.setAttribute('aria-expanded','true');
+  h.append(el('div','num',String(v.num)));
+  const ht=el('div','ht'); ht.append(el('div','kind',v.kind_label+' · '+v.goal), el('div','title',v.title)); h.append(ht);
+  const pill=el('span','pill'); pill.id='pill-'+id; h.append(pill);
+  const b=el('div','body');
+  h.onclick=()=>{ const cl=c.classList.toggle('closed'); h.setAttribute('aria-expanded',String(!cl)); };
+  const m=el('div','meta');
+  [['אורך',v.len],['משתתפים',v.cast],['לוקיישן',v.loc]].forEach(([k,val])=>{ const s=el('span'); s.append(el('b',null,k+': '), document.createTextNode(val)); m.append(s); });
+  b.append(m, block('הרעיון', el('p','p',v.idea)));
+  const beats=el('div','beats');
+  v.beats.forEach(x=>{ const r=el('div','beat'); r.append(el('div','time',x.t));
+    const bd=el('div','bd'); if(x.v)bd.append(el('p','see',x.v)); if(x.say)bd.append(el('p','say',x.say)); if(x.scr)bd.append(el('p','scr','על המסך: '+x.scr));
+    r.append(bd); beats.append(r); });
+  b.append(block('התסריט, לפי שניות', beats));
+  if(v.verify.length){ const w=el('div','verify'); w.append(el('p','lbl','שאלות פתוחות אליך'), list(v.verify)); b.append(w); }
+  const d=el('div','decide'), btns=el('div','btns');
+  const ta=el('textarea'); ta.id='note-'+id; ta.placeholder='מה לתקן? אפשר לכתוב כאן כל הערה.'; ta.setAttribute('aria-label','הערה'); ta.value=state[id].note;
+  [['approved','מאשר'],['fix','צריך תיקון'],['rejected','לא מאשר']].forEach(([s,t])=>{
+    const bt=el('button','dbtn '+s,t); bt.type='button'; bt.id='btn-'+id+'-'+s;
+    bt.onclick=()=>{ state[id].status = state[id].status===s ? 'pending' : s; store(); paint(id); if(s!=='approved'&&state[id].status===s) ta.focus(); };
+    btns.append(bt); });
+  ta.oninput=()=>{ state[id].note=ta.value; store(); summary(); };
+  d.append(btns,ta); c.append(h,b,d); return c;
+}
+function paint(id){
+  const s=state[id].status, pill=document.getElementById('pill-'+id); pill.className='pill '+s; pill.textContent=LABEL[s];
+  ['approved','fix','rejected'].forEach(k=>document.getElementById('btn-'+id+'-'+k).setAttribute('aria-pressed',String(s===k)));
+  summary();
+}
+function summary(){
+  const lines=['בינגו Fit, תסריטים לחודש 2 – התשובות של חיים:',''];
+  items.forEach(i=>{ const s=state[i.id]; lines.push(i.name+' — '+LABEL[s.status]+(s.note.trim()?(' — '+s.note.trim()):'')); });
+  if(state.general.trim()) lines.push('', 'הערה כללית: '+state.general.trim());
+  const txt=lines.join('\n');
+  document.getElementById('sumtxt').textContent=txt;
+  document.getElementById('wa').href='https://wa.me/?text='+encodeURIComponent(txt);
+  const done=items.filter(i=>state[i.id].status!=='pending').length;
+  document.getElementById('prog').textContent='סימנת '+done+' מתוך '+items.length+' תסריטים';
+}
+const V=document.getElementById('videos'); DATA.videos.forEach(v=>V.append(card(v)));
+items.forEach(i=>paint(i.id));
+document.getElementById('copy').onclick=async()=>{
+  const pre=document.getElementById('sumtxt'), btn=document.getElementById('copy');
+  try{ await navigator.clipboard.writeText(pre.textContent); btn.textContent='הועתק'; }
+  catch(e){ const r=document.createRange(); r.selectNodeContents(pre); const s=getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent='סומן. אפשר להעתיק'; }
+  setTimeout(()=>btn.textContent='העתק סיכום',2500);
+};
+</script>
+</body></html>
